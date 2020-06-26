@@ -57,7 +57,6 @@ pipeline {
                     sh 'whoami'
                     sh 'ps -ef | grep docker'
                     sh 'ls -al /var/run/'
-                    sh 'ln -s /run/docker.sock /var/run/docker.sock'
                     sh 'ls -al /run/docker.sock'
                     sh 'ls -al /run'
                     sh 'ls -al /var/run'
