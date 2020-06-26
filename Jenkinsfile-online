@@ -56,8 +56,10 @@ pipeline {
                     sh 'mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package'
                     sh 'whoami'
                     sh 'su -'
-                    sh 'docker version'
                     sh 'ps -ef | grep docker'
+                    sh 'ls -al /var/run/docker.sock'
+                    sh 'find / -name docker.sock'
+                    sh 'docker version'
                     sh 'docker images'
                     sh 'docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
                     withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
