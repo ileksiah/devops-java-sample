@@ -21,7 +21,7 @@ pipeline {
     }
 
     stages {
-       
+        /*
         stage ('checkout scm') {
             steps {
                 checkout(scm)
@@ -50,11 +50,13 @@ pipeline {
             }
           }
         }
-        
+        */
 
         stage ('build & push') {
             steps {
+                input(id: 'deploy-to-dev', message: 'deploy to dev?')
                 container ('maven') {
+                    
                     sh '/sbin/ifconfig'
                     sh 'mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package'
                     sh 'whoami'
