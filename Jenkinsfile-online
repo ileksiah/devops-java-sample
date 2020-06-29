@@ -67,7 +67,7 @@ pipeline {
                     sh 'apt remove --purge containerd.io docker-ce docker-ce-cli'
                     sh 'wget https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
                     sh 'dpkg -i docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
-
+                    */
                     sh 'docker version'
                     sh 'docker images'
                     
@@ -76,7 +76,7 @@ pipeline {
                         sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
                         sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
                     }
-                    */
+                    
                 }
                 
                 /*
