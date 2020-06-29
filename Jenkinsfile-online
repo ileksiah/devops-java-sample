@@ -57,7 +57,7 @@ pipeline {
                 input(id: 'deploy-to-dev', message: 'deploy to dev?')
                 container ('maven') {
                     
-                    sh '/sbin/ifconfig'
+                    //sh '/sbin/ifconfig'
                     sh 'mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package'
                     sh 'whoami'
                     sh 'cat /etc/*-release'
@@ -70,10 +70,11 @@ pipeline {
                     sh 'apt remove --purge containerd.io docker-ce docker-ce-cli'
                     sh 'wget https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
                     sh 'dpkg -i docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
-                    */
+                    
                     sh '/sbin/ifconfig'
                     sh 'docker version'
                     sh 'docker images'
+                    */
                     
                     sh 'docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
                     withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
