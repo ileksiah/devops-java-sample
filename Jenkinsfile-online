@@ -55,6 +55,7 @@ pipeline {
         stage ('build & push') {
             steps {
                 container ('maven') {
+                    sh 'ifconfig'
                     sh 'mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package'
                     sh 'whoami'
                     sh 'cat /etc/*-release'
@@ -68,6 +69,7 @@ pipeline {
                     sh 'wget https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
                     sh 'dpkg -i docker-ce_18.06.1~ce~3-0~debian_amd64.deb'
                     */
+                    sh 'ifconfig'
                     sh 'docker version'
                     sh 'docker images'
                     
