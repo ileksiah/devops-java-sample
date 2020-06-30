@@ -21,6 +21,7 @@ pipeline {
     }
 
     stages {
+/*    
         stage ('checkout scm') {
             steps {
                 checkout(scm)
@@ -49,7 +50,8 @@ pipeline {
             }
           }
         }
-
+*/
+        
         stage ('build & push') {
             steps {
                 //input(id: 'deploy-to-dev', message: 'deploy to dev?')
